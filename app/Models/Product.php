@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ProductStatus;
 
 final class Product extends Model
 {
@@ -22,6 +23,7 @@ final class Product extends Model
     {
         return [
             'price' => 'decimal:2',
+            'status' => ProductStatus::class,
         ];
     }
 

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\OrderStatus;
 
 final class Order extends Model
 {
@@ -21,6 +22,7 @@ final class Order extends Model
     {
         return [
             'total_amount' => 'decimal:2',
+            'status' => OrderStatus::class,
         ]
     }
 
