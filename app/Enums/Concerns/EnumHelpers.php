@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums\Concerns;
 
-trait EnumHelper
+trait EnumHelpers
 {
     public static function values(): array
     {
@@ -20,7 +20,7 @@ trait EnumHelper
     {
         return array_combine(
             self::values(),
-            self::names
+            self::names()
         );
     }
 }
