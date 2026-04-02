@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\V1\User;
 
-use App\Enums\UserRole;
+use Illuminate\Validation\{Rule, Rules\Password};
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 final class UpdateUserRequest extends FormRequest
 {
@@ -24,7 +22,6 @@ final class UpdateUserRequest extends FormRequest
             'name' => ['sometimes', 'string', 'max:255'],
             'email' => ['sometimes', 'email', Rule::unique('users', 'email')->ignore($userId)],
             'password' => ['sometimes', 'confirmed', Password::min('8')],
-            'role' => ['sometimes', Rule::enum(UserRole::class)],
         ];
     }
 }
