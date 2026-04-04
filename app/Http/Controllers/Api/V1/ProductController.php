@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\V1\Product\CreateProductRequest;
-use App\AQC\V1\Product\{CreateProduct, GetProducts};
+use App\AQC\V1\Product\{CreateProduct, GetProducts, UpdateProduct};
+use App\Http\Requests\V1\Product\CreateOrUpdateProductRequest;
 use Illuminate\Http\{JsonResponse, Request};
+use App\Models\Product;
 
 final class ProductController 
 {
@@ -17,25 +18,29 @@ final class ProductController
         return response()->json($products, 200);
     }
 
-    public function store(CreateProductRequest $request): JsonResponse
+    public function store(CreateOrUpdateProductRequest $request): JsonResponse
     {
         $product = (new CreateProduct)->handle($request->validated());
 
         return response()->json($product, 201);
     }
 
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return response()->json($product, 200);
     }
 
-    public function update(Request $request, string $id)
+    public function update(CreateOrUpdateProductRequest $request, Product $product)
     {
-        //
+        $product = (new UpdateProduct)->handle($product, $request->validated());
+
+        return response()->json($product, 200);
     }
 
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return response()->json(null, 204);
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Enums\ProductStatus;
 
-final class CreateProductRequest extends FormRequest
+final class CreateOrUpdateProductRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,11 +18,11 @@ final class CreateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'stock_quantity' => ['required', 'integer', 'min:0'],
-            'name' => ['required', 'string', 'max:255'],
+            'stock_quantity' => ['sometimes', 'integer', 'min:0'],
+            'name' => ['sometimes', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'status' => ['required', Rule::in(ProductStatus::values())],
+            'price' => ['sometimes', 'numeric', 'min:0'],
+            'status' => ['sometimes', Rule::in(ProductStatus::values())],
         ];
     }
 }
