@@ -16,4 +16,9 @@ enum OrderStatus: string
     case Delivered = 'delivered';
     case Cancelled = 'cancelled';
     case Refunded = 'refunded';
+
+    public function canCancel(): bool
+    {
+        return in_array($this, [self::Pending, self::Processing], true);
+    }
 }
