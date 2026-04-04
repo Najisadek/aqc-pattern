@@ -5,19 +5,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\OrderStatus;
 
+#[Fillable('user_id', 'status', 'total_amount', 'address', 'notes')]
 final class Order extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'status',
-        'total_amount',
-        'address',
-        'notes',
-    ];
-
     protected function casts(): array
     {
         return [
