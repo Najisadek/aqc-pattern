@@ -23,7 +23,7 @@ final class Order extends Model
         return [
             'total_amount' => 'decimal:2',
             'status' => OrderStatus::class,
-        ]
+        ];
     }
 
     public function user(): BelongsTo
