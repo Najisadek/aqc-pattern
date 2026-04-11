@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\OrderStatus;
 
-#[Fillable('user_id', 'status', 'total_amount', 'address', 'notes')]
+#[Fillable(['user_id', 'status', 'total_amount', 'address', 'notes'])]
 final class Order extends Model
 {
     protected function casts(): array
